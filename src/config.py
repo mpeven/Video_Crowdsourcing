@@ -3,21 +3,21 @@ import yaml
 from termcolor import colored
 
 config_defaults = {
-    "YOUTUBE.OAUTH_CLIENT_SECRETS_FILE": {"default": "", "default_ok": False},
-    "AWS.ACCESS_KEY_ID": {"default": "", "default_ok": False},
-    "AWS.SECRET_ACCESS_KEY": {"default": "", "default_ok": False},
-    "MTURK.TITLE": {"default": "", "default_ok": False},
-    "MTURK.DESCRIPTION": {"default": "", "default_ok": False},
-    "MTURK.KEYWORDS": {"default": "", "default_ok": False},
+    "YOUTUBE.OAUTH_CLIENT_SECRETS_FILE": {"default": None, "default_ok": False},
+    "AWS.ACCESS_KEY_ID": {"default": None, "default_ok": False},
+    "AWS.SECRET_ACCESS_KEY": {"default": None, "default_ok": False},
+    "MTURK.TITLE": {"default": None, "default_ok": False},
+    "MTURK.DESCRIPTION": {"default": None, "default_ok": False},
+    "MTURK.KEYWORDS": {"default": None, "default_ok": False},
     "MTURK.REWARD": {"default": 0.0, "default_ok": False},
     "MTURK.MAX_ASSIGNMENTS": {"default": 100, "default_ok": True},
     "MTURK.LIFETIME_SECONDS": {"default": 604800, "default_ok": True},
     "MTURK.ASSIGNMENT_DURATION_SECONDS": {"default": 3600, "default_ok": True},
     "MTURK.AUTO_APPROVAL_SECONDS": {"default": 259200, "default_ok": True},
     "SURVEY.SURVEY_VIDEOS": {"default": 5, "default_ok": True},
-    "SURVEY.SURVEY_PLAYLIST": {"default": "", "default_ok": False},
+    "SURVEY.SURVEY_PLAYLIST": {"default": None, "default_ok": False},
     "SURVEY.QUALIFICATION_VIDEOS": {"default": 5, "default_ok": True},
-    "SURVEY.QUALIFICATION_PLAYLIST": {"default": "", "default_ok": False},
+    "SURVEY.QUALIFICATION_PLAYLIST": {"default": None, "default_ok": False},
 }
 
 class Config(dict):
