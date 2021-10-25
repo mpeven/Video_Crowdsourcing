@@ -8,22 +8,22 @@
 
 # YOUTUBE Data API
 YOUTUBE:
-  OAUTH_CLIENT_SECRETS_FILE: ""
+  OAUTH_CLIENT_SECRETS_FILE:
 
 
 # AWS credentials for Mechanical Turk
 AWS:
-  ACCESS_KEY_ID: ""
-  SECRET_ACCESS_KEY: ""
+  ACCESS_KEY_ID:
+  SECRET_ACCESS_KEY:
 
 
 # HIT attributes
 # More info here:
 # https://docs.aws.amazon.com/AWSMechTurk/latest/AWSMechanicalTurkRequester/mturk-hits-attributes.html
 MTURK:
-  TITLE: ""
-  DESCRIPTION: ""
-  KEYWORDS: ""
+  TITLE:
+  DESCRIPTION:
+  KEYWORDS:
   REWARD: 0.0
   MAX_ASSIGNMENTS: 0
   LIFETIME_SECONDS: 604800 # 1 week
@@ -34,6 +34,6 @@ MTURK:
 # Survey options
 SURVEY:
   SURVEY_VIDEOS: 5 # Number of videos per survey
-  SURVEY_PLAYLIST: "" # Title of the youtube playlist for un-annotated videos
+  SURVEY_PLAYLIST: # Title of the youtube playlist for un-annotated videos
   QUALIFICATION_VIDEOS: 5
-  QUALIFICATION_PLAYLIST: "" # Title of the youtube playlist for qualification videos
+  QUALIFICATION_PLAYLIST: # Title of the youtube playlist for qualification videos
