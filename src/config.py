@@ -65,7 +65,7 @@ class Config(dict):
         return config_string
 
 
-    def config_complete(self, section="all"):
+    def config_complete(self, section_to_check="all"):
         """ Returns whether the config.yml file is filled out or not """
         config = self.load_config()
         sections_complete = {}
@@ -87,9 +87,9 @@ class Config(dict):
             sections_complete[section] = all(section_options)
 
         # Return whether all options are ok unless specificed
-        if section == "all":
+        if section_to_check == "all":
             return all(list(sections_complete.values()))
         else:
-            return sections_complete[section]
+            return sections_complete[section_to_check]
 
 
