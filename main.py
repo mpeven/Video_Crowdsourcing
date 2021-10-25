@@ -214,6 +214,8 @@ class CLI:
 
     def check_hits(self, sandbox=True):
         """ Check if hits exist """
+        if not self.check_config("AWS"):
+            return False
         hits = self.mturk_account.get_hits(sandbox=sandbox)
         return True if len(hits) > 0 else False
 
