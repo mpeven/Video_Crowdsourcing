@@ -21,7 +21,7 @@ You will need:
 - Python
     - Note: this can be done easily using [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) to install Python and required libraries
 - Installation of required libraries
-    - If using conda: `conda install --file requirements.txt`
+    - If using conda: `conda install -c conda-forge --file requirements.txt`
     - If using pip: `pip install -r requirements.txt`
 
 ## 2) Run Command Line Interface (CLI)
@@ -43,8 +43,9 @@ The CLI can be run with `python main.py` and should guide you through the rest o
 1. Get access to YouTube Data API
     - Instructions here: [link](https://developers.google.com/youtube/v3/quickstart/python#step_1_set_up_your_project_and_credentials)
     - _**IMPORTANT**_: Make sure you set "Application type" as `Desktop app` when you are on the page "Create OAuth client ID"
+    - Download the JSON file of the OAuth client secrets and remember the path for the next step
 2. Fill out the needed sections of the [config file](config.yml)
-    - YOUTUBE section: oauth client secrets file
+    - YOUTUBE section: oauth client secrets json file location
     - SURVEY section: number of videos per survey
 3. Create surveys using the option in the CLI
 4. Verify the survey is correct by opening the sample survey in a web browser
