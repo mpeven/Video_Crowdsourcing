@@ -17,6 +17,7 @@ Videos from a YouTube playlist are used to programatically build surveys, includ
 You will need:
 - Access to a command line (terminal)
 - Download of this respository
+    - `git clone https://github.com/mpeven/Video_Crowdsourcing.git`
 - Python
     - Note: this can be done easily using [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) to install Python and required libraries
 - Installation of required libraries

@@ -3,6 +3,7 @@ import os
 import click
 from termcolor import colored
 import pprint
+import webbrowser
 
 from src.config import Config
 from src.youtube import YouTubeAccount
@@ -11,8 +12,6 @@ from src.survey import HTMLSurvey
 import src.utils as utils
 
 # TODOS:
-# - Function to upload a directory of videos to youtube (in src/youtube.py)
-# - Function to create a HIT (sandbox + real) from the html file & csv generated
 # - Clean up the process_data.py  file (put it into mturk.py ) and get it to work with mturk instead of qualtrics
 # - Figure out how to make the HIT only allow workers who have passed qualification
 
@@ -23,14 +22,14 @@ class CLI:
         self.mturk_account = MTurkAccount(self.config["AWS"]["ACCESS_KEY_ID"],
                                           self.config["AWS"]["SECRET_ACCESS_KEY"])
         self.qual_survey_files = [
-            "surveys/qualification_survey.html",
-            "surveys/qualification_sample_survey_do_not_upload.html",
-            "surveys/qualification_survey.csv"
+            os.path.join(os.getcwd(), "surveys/qualification_survey.html"),
+            os.path.join(os.getcwd(), "surveys/qualification_sample_survey_do_not_upload.html"),
+            os.path.join(os.getcwd(), "surveys/qualification_survey.csv")
         ]
         self.survey_files = [
-            "surveys/survey.html",
-            "surveys/sample_survey_do_not_upload.html",
-            "surveys/survey.csv"
+            os.path.join(os.getcwd(), "surveys/survey.html"),
+            os.path.join(os.getcwd(), "surveys/sample_survey_do_not_upload.html"),
+            os.path.join(os.getcwd(), "surveys/survey.csv")
         ]
 
 
@@ -41,9 +40,10 @@ class CLI:
             'edit_config': 'b',
             'yt_playlists': 'c',
             'create_survey': 'd',
-            'create_sb_hit': 'e',
-            'create_hit': 'f',
-            'check_hit': 'g',
+            'verify_survey': 'e',
+            'create_sb_hit': 'f',
+            'create_hit': 'g',
+            'check_hit': 'h',
             'exit': 'x',
         }
 
@@ -88,6 +88,7 @@ class CLI:
                 f"   {prompts['yt_playlists']} - Check status of YouTube playlists\n"
                 " Survey HTML\n"
                 f"   {prompts['create_survey']} - Create survey html for mechanical turk\n"
+                f"   {prompts['verify_survey']} - Verify the sample survey is correct in your browser\n"
                 " Mechanical Turk\n"
                 f"   {prompts['create_sb_hit']} - Create HITs in mechanical turk sandbox mode\n"
                 f"   {prompts['create_hit']} - Create HITs in mechanical turk\n"
@@ -106,10 +107,10 @@ class CLI:
                 self.edit_config()
             elif prompt_response == prompts['yt_playlists']:
                 self.youtube_check_status()
-            elif prompt_response == prompts['yt_upload']:
-                self.youtube_upload()
             elif prompt_response == prompts['create_survey']:
                 self.create_surveys()
+            elif prompt_response == prompts['verify_survey']:
+                self.verify_survey()
             elif prompt_response == prompts['create_sb_hit']:
                 self.mturk_create_hit(sandbox=True)
             elif prompt_response == prompts['create_hit']:
@@ -175,8 +176,6 @@ class CLI:
 
     def create_surveys(self):
         """ Create survey using videos from a selected playlist"""
-        # Check playlists exist
-
         # Get playlists
         qual_playlist = self.youtube_account.get_playlist(self.config["SURVEY"]["QUALIFICATION_PLAYLIST"])
         survey_playlist = self.youtube_account.get_playlist(self.config["SURVEY"]["SURVEY_PLAYLIST"])
@@ -200,6 +199,12 @@ class CLI:
         qual_survey.save_survey(*self.qual_survey_files)
         survey.save_survey(*self.survey_files)
         print("\nCheck the sample surveys to ensure they look correct\n")
+
+
+    def verify_survey(self):
+        """ Open the sample survey in a webbrowser """
+        file = f"file://{self.survey_files[1]}"
+        webbrowser.open_new_tab(file)
 
 
     def mturk_create_hit(self, sandbox=True):
